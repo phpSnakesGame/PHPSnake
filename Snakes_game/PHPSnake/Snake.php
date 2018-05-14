@@ -95,12 +95,12 @@ class Snake
                 $this->tail = new Location($x + 1, $y);
                 break;
             case (Direction::UP):
-                $this->head = new Location($x, $y + 1);
-                $this->tail = new Location($x, $y + 1);
-                break;
-            case (Direction::DOWN):
                 $this->head = new Location($x, $y - 1);
                 $this->tail = new Location($x, $y - 1);
+                break;
+            case (Direction::DOWN):
+                $this->head = new Location($x, $y + 1);
+                $this->tail = new Location($x, $y + 1);
                 break;
         // если делать в консоли, надо почистить клетку, где змея была, сделать ее пустой
         }
@@ -131,15 +131,44 @@ class Snake
                 $this->direction = Direction::LEFT;
             }
         }
-        elseif ($x_snake > $enemy_x && $y_snake < $enemy_y){
-
+        elseif ($x_snake > $enemy_x && $y_snake < $enemy_y) {
+            if ($this->direction == Direction:: RIGHT) {
+                $this->direction = Direction::DOWN;
+            } elseif ($this->direction == Direction::LEFT) {
+                $this->direction = Direction::DOWN;
+            } elseif ($this->direction == Direction::UP) {
+                $this->direction = Direction::LEFT;
+            } elseif ($this->direction == Direction::DOWN) {
+                $this->direction = Direction::LEFT;
+            }
         }
 
         elseif ($x_snake < $enemy_x && $y_snake > $enemy_y){
-
+            if ($this->direction == Direction::RIGHT) {
+                $this->direction = Direction::UP;
+            } elseif ($this->direction == Direction::LEFT) {
+                $this->direction = Direction::UP;
+            } elseif($this->direction == Direction::UP) {
+                $this->direction = Direction::RIGHT;
+            } elseif ($this->direction == Direction::DOWN)
+            {
+                $this->direction = Direction::RIGHT;
+            }
         }
-        elseif ($x_snake < $enemy_x && $y_snake < $enemy_y){
 
+        elseif ($x_snake < $enemy_x && $y_snake < $enemy_y){
+            if ($this->direction == Direction::RIGHT) {
+                $this->direction = Direction::DOWN;
+            }
+            elseif ($this->direction == Direction::LEFT){
+                $this->direction = Direction::DOWN;
+            }
+            elseif ($this->direction == Direction::UP){
+                $this->direction = Direction::RIGHT;
+            }
+            elseif ($this->direction == Direction::DOWN){
+                $this->direction = Direction::RIGHT;
+            }
         }
     }
 
