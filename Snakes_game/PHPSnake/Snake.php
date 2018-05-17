@@ -15,11 +15,23 @@ class Snake
     private $id;
     private $head, $body, $tail;
     private $length = 5;
+    private $steps_count = 50;
+
+    private $is_alive = false;
     private $is_bited = false;
+    private $is_crashed = false;
+
     private $score = 0;
     private $json;
-    private $direction;
+    private $direction = Direction::RIGHT;
 
+    //с false на true, когда съедена(тело = 0 или только голова), врезалась, кол-во шагов
+    public function checkAlive(){
+        if ($this->is_bited = true || $this->is_crashed = true || $this->steps_count = 0){
+            $this->is_crashed = true;
+        }
+        return $this->is_alive;
+    }
     public function _construct($id, $x, $y){
 
         $this->id = $id;
