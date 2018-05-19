@@ -16,7 +16,7 @@ class Snake
     private $head, $body, $tail;
     private $length = 5;
 
-    private $is_alive = false; // для каждой змеи, в общем классе проверять, если одна из змей умерла, game over
+    private $is_alive = true; // для каждой змеи, в общем классе проверять, если одна из змей умерла, game over
 
     private $is_bited = false;
     private $is_crashed = false;
@@ -31,8 +31,11 @@ class Snake
     //переменную is_alive меняем с false на true, когда съедена, врезалась в границы поля или в голову / тело
     // змеи - противника, обнулился счетчик, отвечающий за кол-во шагов
     public function checkAlive(){
-        if ($this->is_bited = true || $this->is_crashed = true || $this->steps_count = 0){
-            $this->is_crashed = true;
+        if ($this->length == 1 || $this->is_crashed = true || $this->steps_count = 0){
+            $this->is_alive = false;
+        }
+        else {
+            $this->is_alive = true;
         }
         return $this->is_alive;
     }
@@ -62,17 +65,17 @@ class Snake
 
 
     /*TODO расположение змеи с k = 1: head[x,y], где {x: 4 -> 6; y: 0 -> 4}, тело и хвост располагаются слева от головы, направление дефолтное направо */
-    /*TODO расположение змеи с k = 2: head[x,y], где {x: 3 -> 9; y: 6 -> 9}, тело и хвост располагаются справа от головы, направление дефолтное влево*/
+    /*TODO расположение змеи с k = 2: head[x,y], где {x: 3 -> 5; y: 6 -> 9}, тело и хвост располагаются справа от головы, направление дефолтное влево*/
 
     public function generateLocationForFirstSnake(){
-        $x = rand(0,6);
+        $x = rand(4,6);
         $y = rand(0,4);
         $location = new Location($x, $y);
         return $location;
     }
 
     public function generateLocationForSecondSnake(){
-        $x = rand(3,9);
+        $x = rand(3,5);
         $y = rand(6,9);
         $location = new Location($x, $y);
         return $location;
