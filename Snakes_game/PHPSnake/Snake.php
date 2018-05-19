@@ -23,7 +23,6 @@ class Snake
     private $steps_count = 50;
 
     private $score = 0;
-    private $json;
     private $direction = Direction::RIGHT;
 
     /*TODO определиться, когда змея считается съеденной: когда тело = 0 или когда остается только голова*/
@@ -43,24 +42,28 @@ class Snake
     //при создании змеи, задаем ей "собственнный идентификатор": 1 или 2
     // если k = 1, генерируем ее первоначальное появление в поле (x: 0 -> 6; y: 0 -> 4)
     // если k = 2, генерируем первоначальное появление в поле (х: 4 -> 10; y: 6 -> 10)
-    public function _construct($id, $k){
+    public function __construct($id, $k){
         $this->id = $id;
 
         if ($k == 1){
             $this->head = $this->generateLocationForFirstSnake();
+            $x = $this->head->getX();
+            $y = $this->head->getY();
+            /*TODO подумать насчет того, чтобы переделать сделать создание тела в цикле*/
+            $this->body = [new Location($x - 1, $y), new Location($x - 2, $y), new Location($x - 3, $y)];
+            $this->tail = new Location($x - 4, $y);
+
+            $this->direction = Direction::RIGHT;
         }
         elseif ($k == 2){
             $this->head = $this->generateLocationForSecondSnake();
+            $x = $this->head->getX();
+            $y = $this->head->getY();
+
+            $this->body = [new Location($x + 1, $y), new Location($x + 2, $y), new Location($x + 3, $y)];
+            $this->tail = new Location($x + 4, $y);
+            $this->direction = Direction::LEFT;
         }
-
-        $x = $this->head->getX();
-        $y = $this->head->getY();
-
-        for ($i = 1; $i <= 3; $i++){
-            $this->body[$i] = new Location($x + $i, $y);
-        }
-
-        $this->tail = new Location($x + 4, $y);
     }
 
 
@@ -81,11 +84,10 @@ class Snake
         return $location;
     }
 
-
     public function makeJson(){
-        $this->json = array("id"=>$this->id, "head"=>$this->head, "body"=>$this->body, "tail"=>$this->tail,
+        $json = array("id"=>$this->getId(), "head"=>$this->getHead(), "body"=>$this->getBody(), "tail"=>$this->getTail(),
             "is_bited"=>$this->is_bited);
-        $json_string = json_encode($this->json);
+        $json_string = json_encode($json);
         return $json_string;
     }
 
