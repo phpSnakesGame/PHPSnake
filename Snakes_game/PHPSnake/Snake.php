@@ -25,8 +25,6 @@ class Snake
     private $score = 0;
     private $direction = Direction::RIGHT;
 
-    /*TODO определиться, когда змея считается съеденной: когда тело = 0 или когда остается только голова*/
-
     //переменную is_alive меняем с false на true, когда съедена, врезалась в границы поля или в голову / тело
     // змеи - противника, обнулился счетчик, отвечающий за кол-во шагов
     public function checkAlive(){
@@ -137,26 +135,34 @@ class Snake
     /*TODO брать координаты частей змеи и сдвигать*/
     private function move($direction){
         /* х, у только для примера, надо взять старые значения голова, тела, хвоста*/
-        $x = 0;
-        $y = 0;
+        $x_head = $this->getHead()->getX();
+        $y_head = $this->getHead()->getY();
+
+        /*TODO брать х, у тела*/
+        $array_body = $this->getBody();
+        $x_tail = $this->getTail()->getX();
+        $y_tail = $this->getTail()->getY();
 
         switch ($direction){
             case (Direction::LEFT):
-                $this->head = new Location( $x - 1,$y);
-                // сдвинуть все тело
-                $this->tail = new Location($x - 1, $y);
+                $this->head = new Location( $x_head - 1,$y_head);
+                foreach ($array_body as $part){
+                    $x_body = $part->getX();
+                    $y_body = $part->getY();
+                }
+                $this->tail = new Location($x_tail - 1, $y_tail);
                 break;
             case (Direction::RIGHT):
-                $this->head = new Location($x + 1, $y);
-                $this->tail = new Location($x + 1, $y);
+                $this->head = new Location($x_head + 1, $y_head);
+                $this->tail = new Location($x_tail + 1, $y_tail);
                 break;
             case (Direction::UP):
-                $this->head = new Location($x, $y - 1);
-                $this->tail = new Location($x, $y - 1);
+                $this->head = new Location($x_head, $y_head - 1);
+                $this->tail = new Location($x_tail, $y_tail - 1);
                 break;
             case (Direction::DOWN):
-                $this->head = new Location($x, $y + 1);
-                $this->tail = new Location($x, $y + 1);
+                $this->head = new Location($x_head, $y_head + 1);
+                $this->tail = new Location($x_tail, $y_tail + 1);
                 break;
         }
     }
@@ -242,7 +248,7 @@ class Snake
     }
 
     /**
-     * @return Location
+     * @return array
      */
     public function getBody()
     {
@@ -266,7 +272,7 @@ class Snake
     }
 
     /**
-     * @param Location $body
+     * @param array $body
      */
     public function setBody($body): void
     {

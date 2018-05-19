@@ -28,8 +28,8 @@
       <file leaf-file-name="Snake.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PHPSnake/Snake.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
+            <state relative-caret-position="417">
+              <caret line="149" column="45" selection-start-line="149" selection-start-column="45" selection-end-line="149" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -79,8 +79,8 @@
         <option value="$PROJECT_DIR$/game.php" />
         <option value="$PROJECT_DIR$/PHPSnake/testClass.php" />
         <option value="$PROJECT_DIR$/PHPSnake/TestClass.php" />
-        <option value="$PROJECT_DIR$/PHPSnake/Snake.php" />
         <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/PHPSnake/Snake.php" />
       </list>
     </option>
   </component>
@@ -157,7 +157,7 @@
     </option>
   </component>
   <component name="RunManager" selected="PHP Script.test.php">
-    <configuration name="game.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/game.php" />
+    <configuration name="game.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/PHPSnake/game.php" />
     <configuration name="test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/test.php" />
     <list>
       <item itemvalue="PHP Script.game.php" />
@@ -192,12 +192,12 @@
       <workItem from="1526196400620" duration="19226000" />
       <workItem from="1526482265673" duration="7624000" />
       <workItem from="1526574164671" duration="8087000" />
-      <workItem from="1526725285113" duration="12111000" />
+      <workItem from="1526725285113" duration="17400000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87720000" />
+    <option name="totallyTimeSpent" value="93009000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -221,7 +221,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.111409396" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.03691275" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.039597314" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -520,8 +520,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PHPSnake/Snake.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
+        <state relative-caret-position="417">
+          <caret line="149" column="45" selection-start-line="149" selection-start-column="45" selection-end-line="149" selection-end-column="45" />
         </state>
       </provider>
     </entry>

@@ -3,7 +3,7 @@
 use PHPSnake\Snake;
 
 spl_autoload_register(function ($class_name) {
-    include_once "$class_name.php";
+    include_once "game.php";
 });
 
 /*TODO отправка и получение json-a, в цикле ?*/
