@@ -16,6 +16,7 @@ class Snake
     private $head, $body, $tail;
     private $length = 5;
 
+    private $head_enemy,$body_enemy, $tail_enemy;
     private $is_alive = true; // для каждой змеи, в общем классе проверять, если одна из змей умерла, game over
 
     private $is_bited = false;
@@ -163,74 +164,38 @@ class Snake
 
     /*TODO реализовать алгоритм для движения змеи */
     private function snake_choose_dir(){
-        $x_snake = 0;
-        $y_snake = 0;
+        $x_snake = $this->head->getX();
+        $y_snake = $this->head->getY();
 
-        $enemy_x = 1;
-        $enemy_y = 1;
+        //TODO уточнить каким образом хранится инфа о сопернике
+        $enemy_x = $this->body_enemy[count(body_enemy)-1][0];
+        $enemy_y = $this->body_enemy[count(body_enemy)-1][1];
 
-        if ($x_snake > $enemy_x && $y_snake > $enemy_y){
-            if ($this->direction == Direction::RIGHT)
-            {
-                $this->direction = Direction::UP;
-            }
-            elseif ($this->direction == Direction::LEFT)
-            {
-                $this->direction = Direction::UP;
-            }
-            elseif ($this->direction == Direction::UP)
-            {
-                $this->direction = Direction::LEFT;
-            }
-            elseif ($this->direction == Direction::DOWN)
-            {
-                $this->direction = Direction::LEFT;
-            }
+        $x_dif = $x_snake-$enemy_x;
+        $y_dif = $y_snake-$enemy_y;
+
+        $dir_1 = Direction::LEFT;
+        $dir_2 = Direction::DOWN;
+
+
+        if ($x_snake < $enemy_x){
+            $dir_1 = Direction::RIGHT;
         }
-        elseif ($x_snake > $enemy_x && $y_snake < $enemy_y) {
-            if ($this->direction == Direction:: RIGHT) {
-                $this->direction = Direction::DOWN;
-            } elseif ($this->direction == Direction::LEFT) {
-                $this->direction = Direction::DOWN;
-            } elseif ($this->direction == Direction::UP) {
-                $this->direction = Direction::LEFT;
-            } elseif ($this->direction == Direction::DOWN) {
-                $this->direction = Direction::LEFT;
-            }
+        if ($y_snake > $enemy_y){
+            $dir_2 = Direction::UP;
         }
-
-        elseif ($x_snake < $enemy_x && $y_snake > $enemy_y){
-            if ($this->direction == Direction::RIGHT) {
-                $this->direction = Direction::UP;
-            } elseif ($this->direction == Direction::LEFT) {
-                $this->direction = Direction::UP;
-            } elseif($this->direction == Direction::UP) {
-                $this->direction = Direction::RIGHT;
-            } elseif ($this->direction == Direction::DOWN)
-            {
-                $this->direction = Direction::RIGHT;
-            }
-        }
-
-        elseif ($x_snake < $enemy_x && $y_snake < $enemy_y){
-            if ($this->direction == Direction::RIGHT) {
-                $this->direction = Direction::DOWN;
-            }
-            elseif ($this->direction == Direction::LEFT){
-                $this->direction = Direction::DOWN;
-            }
-            elseif ($this->direction == Direction::UP){
-                $this->direction = Direction::RIGHT;
-            }
-            elseif ($this->direction == Direction::DOWN){
-                $this->direction = Direction::RIGHT;
-            }
+        if(abs($x_dif) > abs($y_dif)){
+            $this->direction = $dir_1;
+        }else{
+            $this->direction = $dir_2;
         }
     }
 
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
     private function eatSnake(){
+        if($this->head->getX() == $this->tail_enemy[0] && $this->head->getY() == $this->tail_enemy[1]){
 
+        }
     }
 
     /**
