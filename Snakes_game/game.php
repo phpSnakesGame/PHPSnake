@@ -1,16 +1,20 @@
 <?php
 
 use PHPSnake\Snake;
+
 spl_autoload_register(function ($class_name) {
     include_once "$class_name.php";
 });
 
+/*TODO отправка и получение json-a, в цикле ?*/
 // json
 
 $request = array(
     "answer" => 42
 );
 $request_string = json_encode($request);
+
+
 
 // отправляем json
 
@@ -32,7 +36,7 @@ curl_close($ch);
 
 
 //получаем ответ (battle_id, snake_id)
-//получаем json, его отправляем на запрос
+//ответ (battle_id, snake_id) отправляем как запрос серваку
 // получаем ответ 202
 //отправляем json, получаем json с картой и змеями
 

@@ -26,7 +26,10 @@ class Snake
     private $json;
     private $direction = Direction::RIGHT;
 
-    //с false на true, когда съедена(тело = 0 или только голова), врезалась, кол-во шагов
+    /*TODO определиться, когда змея считается съеденной: когда тело = 0 или когда остается только голова*/
+
+    //переменную is_alive меняем с false на true, когда съедена, врезалась в границы поля или в голову / тело
+    // змеи - противника, обнулился счетчик, отвечающий за кол-во шагов
     public function checkAlive(){
         if ($this->is_bited = true || $this->is_crashed = true || $this->steps_count = 0){
             $this->is_crashed = true;
@@ -34,8 +37,10 @@ class Snake
         return $this->is_alive;
     }
 
+    //при создании змеи, задаем ей "собственнный идентификатор": 1 или 2
+    // если k = 1, генерируем ее первоначальное появление в поле (x: 0 -> 6; y: 0 -> 4)
+    // если k = 2, генерируем первоначальное появление в поле (х: 4 -> 10; y: 6 -> 10)
     public function _construct($id, $k){
-
         $this->id = $id;
 
         if ($k == 1){
@@ -48,7 +53,6 @@ class Snake
         $x = $this->head->getX();
         $y = $this->head->getY();
 
-        //проверка рандома для разного положения змей
         for ($i = 1; $i <= 3; $i++){
             $this->body[$i] = new Location($x + $i, $y);
         }
@@ -56,57 +60,10 @@ class Snake
         $this->tail = new Location($x + 4, $y);
     }
 
-    /**
-     * @return Location
-     */
-    public function getHead()
-    {
-        return $this->head;
-    }
 
-    /**
-     * @return Location
-     */
-    public function getBody()
-    {
-        return $this->body;
-    }
+    /*TODO расположение змеи с k = 1: head[x,y], где {x: 4 -> 6; y: 0 -> 4}, тело и хвост располагаются слева от головы, направление дефолтное направо */
+    /*TODO расположение змеи с k = 2: head[x,y], где {x: 3 -> 9; y: 6 -> 9}, тело и хвост располагаются справа от головы, направление дефолтное влево*/
 
-    /**
-     * @return Location
-     */
-    public function getTail()
-    {
-        return $this->tail;
-    }
-
-    /**
-     * @param Location $head
-     */
-    public function setHead($head): void
-    {
-        $this->head = $head;
-    }
-
-    /**
-     * @param Location $body
-     */
-    public function setBody($body): void
-    {
-        $this->body = $body;
-    }
-
-    /**
-     * @param Location $tail
-     */
-    public function setTail($tail): void
-    {
-        $this->tail = $tail;
-    }
-
-
-    // расположение рандомное: одна змея (х:0 до 6; у:0 до 4), другая змея (х:4 до 10; у:6 до 10)
-    //проверка рандома на границе
     public function generateLocationForFirstSnake(){
         $x = rand(0,6);
         $y = rand(0,4);
@@ -115,16 +72,12 @@ class Snake
     }
 
     public function generateLocationForSecondSnake(){
-        $x = rand(4,10);
-        $y = rand(6,10);
+        $x = rand(3,9);
+        $y = rand(6,9);
         $location = new Location($x, $y);
         return $location;
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
 
     public function makeJson(){
         $this->json = array("id"=>$this->id, "head"=>$this->head, "body"=>$this->body, "tail"=>$this->tail,
@@ -133,48 +86,50 @@ class Snake
         return $json_string;
     }
 
-    //проверка границ
-    public function testBoard()
+    // проверка границ поля
+    public function testBoardOfMap()
     {
-        $this->head = $this->getHead();
-        $x = $this->head->getX();
-        $y = $this->head->getY();
-        if ($x == 0 || $y == 0 || $x == 10 || $y == 10){
+        $x = $this->getHead()->getX();
+        $y = $this->getHead()->getY();
+        if ($x < 0 || $y < 0 || $x > 9 || $y > 9){
             $this->is_crashed = true;
+        }
+        else {
+            $this->is_crashed = false;
         }
         return $this->is_crashed;
     }
 
 
-    private function testDirection($temp, $direction)
+    private function testDirectionOfSnake($previous_direction, $direction)
     {
         if ($direction == Direction::UP){
-            if ($temp == Direction::DOWN){
+            if ($previous_direction == Direction::DOWN){
                 return false;
             }
         }
 
         elseif ($direction == Direction::DOWN){
-            if ($temp == Direction::UP){
+            if ($previous_direction == Direction::UP){
                 return false;
             }
         }
 
         elseif ($direction == Direction::LEFT){
-            if ($temp == Direction::RIGHT){
+            if ($previous_direction == Direction::RIGHT){
                 return false;
             }
         }
 
         elseif ($direction == Direction::RIGHT){
-            if ($temp == Direction::LEFT){
+            if ($previous_direction == Direction::LEFT){
                 return false;
             }
         }
         return true;
     }
 
-
+    /*TODO брать координаты частей змеи и сдвигать*/
     private function move($direction){
         /* х, у только для примера, надо взять старые значения голова, тела, хвоста*/
         $x = 0;
@@ -201,7 +156,7 @@ class Snake
         }
     }
 
-    // подумать как взять координаты змей
+    /*TODO реализовать алгоритм для движения змеи */
     private function snake_choose_dir(){
         $x_snake = 0;
         $y_snake = 0;
@@ -272,6 +227,60 @@ class Snake
     private function eatSnake(){
 
     }
+
+    /**
+     * @return Location
+     */
+    public function getHead()
+    {
+        return $this->head;
+    }
+
+    /**
+     * @return Location
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * @return Location
+     */
+    public function getTail()
+    {
+        return $this->tail;
+    }
+
+    /**
+     * @param Location $head
+     */
+    public function setHead($head): void
+    {
+        $this->head = $head;
+    }
+
+    /**
+     * @param Location $body
+     */
+    public function setBody($body): void
+    {
+        $this->body = $body;
+    }
+
+    /**
+     * @param Location $tail
+     */
+    public function setTail($tail): void
+    {
+        $this->tail = $tail;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
 }
 
