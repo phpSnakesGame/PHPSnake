@@ -100,7 +100,6 @@ class Snake
         return $this->is_crashed;
     }
 
-
     private function testDirectionOfSnake($previous_direction, $direction)
     {
         if ($direction == Direction::UP){
@@ -197,39 +196,14 @@ class Snake
         $dir_1 = Direction::LEFT;
         $dir_2 = Direction::DOWN;
 
-        /*if ($x_snake < $enemy_x){
+        if ($x_snake < $enemy_x){
             $dir_1 = Direction::RIGHT;
         }
 
         if ($y_snake > $enemy_y){
             $dir_2 = Direction::UP;
         }
-
-        if($x_snake > $enemy_x){
-            $dir_1 = Direction::LEFT;
-        }
-
-        if ($y_snake < $enemy_y){
-            $dir_2 = Direction::DOWN;
-        }*/
-        switch ($x_dif){
-            case ($x_dif > 0):
-                $dir_1 = Direction::LEFT;
-                break;
-            case ($x_dif < 0):
-                $dir_1 = Direction::RIGHT;
-                break;
-        }
-
-        switch ($y_dif){
-            case ($y_dif > 0):
-                $dir_2 = Direction::UP;
-                break;
-            case ($y_dif < 0):
-                $dir_2 = Direction::DOWN;
-                break;
-        }
-
+        
         //TODO делать: this->direction или this->setDirection
         if(abs($x_dif) > abs($y_dif)){
             $this->direction = $dir_1;
@@ -243,9 +217,15 @@ class Snake
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
     private function eatSnake(){
         if($this->head->getX() == $this->tail_enemy[0] && $this->head->getY() == $this->tail_enemy[1]){
-
+            // вызываем метод достроения тела и хвоста
         }
     }
+
+    private function rebuildSnakeIfIsBited(){
+
+    }
+
+    private function rebuildSnakeIfIs
 
     /**
      * @return Location
