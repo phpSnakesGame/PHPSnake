@@ -186,10 +186,14 @@ class Snake
         //TODO уточнить каким образом хранится инфа о сопернике
 
         //координаты последнего элемента тела
-        //TODO проверять, если есть тело, брать эти значения, если нет - головы. подумать, точно ли не врежется змея в тело, если целью будет не хвост
-        $enemy_x = $this->body_enemy[count($this->body_enemy)-1][0];
-        $enemy_y = $this->body_enemy[count($this->body_enemy)-1][1];
-
+        //TODO подумать, точно ли не врежется змея в тело, если целью будет не хвост
+        if (($this->head_enemy[0] == $this->tail_enemy[0] && abs($this->head_enemy[1] - $this->tail_enemy[1])== 1) || ($this->head_enemy[1] == $this->tail_enemy[1] && abs($this->head_enemy[0] - $this->tail_enemy[0])== 1)){
+            $enemy_x = $this->head_enemy[0];
+            $enemy_y = $this->head_enemy[1];
+        }else {
+            $enemy_x = $this->body_enemy[count($this->body_enemy) - 1][0];
+            $enemy_y = $this->body_enemy[count($this->body_enemy) - 1][1];
+        }
         // разность между координатами змей
 
         $x_dif = $x_snake-$enemy_x;
