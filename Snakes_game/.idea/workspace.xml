@@ -28,35 +28,35 @@
       <file leaf-file-name="game.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="19" selection-start-line="19" selection-end-line="30" selection-end-column="16" />
+            <state relative-caret-position="328">
+              <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Direction.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PHPSnake/Direction.php">
+      <file leaf-file-name="WorkWithServer.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PHPSnake/WorkWithServer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+            <state relative-caret-position="231">
+              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Snake.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Snake.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PHPSnake/Snake.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="295" column="61" selection-start-line="295" selection-start-column="61" selection-end-line="295" selection-end-column="61" />
+            <state relative-caret-position="6348">
+              <caret line="370" column="5" selection-start-line="370" selection-start-column="5" selection-end-line="370" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.php">
+      <file leaf-file-name="Game.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PHPSnake/Game.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="252">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -91,11 +91,13 @@
         <option value="$PROJECT_DIR$/PHPSnake/Test/JsonTest.php" />
         <option value="$PROJECT_DIR$/testSnake.php" />
         <option value="$PROJECT_DIR$/PHPSnake/Test/t.php" />
-        <option value="$PROJECT_DIR$/game.php" />
         <option value="$PROJECT_DIR$/PHPSnake/Test/TestClass.php" />
         <option value="$PROJECT_DIR$/t.php" />
         <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/game.php" />
+        <option value="$PROJECT_DIR$/PHPSnake/WorkWithServer.php" />
         <option value="$PROJECT_DIR$/PHPSnake/Snake.php" />
+        <option value="$PROJECT_DIR$/PHPSnake/Game.php" />
       </list>
     </option>
   </component>
@@ -109,10 +111,10 @@
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.1" />
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="950" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="951" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -208,12 +210,13 @@
       <workItem from="1526725285113" duration="30173000" />
       <workItem from="1526799201574" duration="6290000" />
       <workItem from="1526807386448" duration="2930000" />
-      <workItem from="1526815574088" duration="11701000" />
+      <workItem from="1526815574088" duration="20591000" />
+      <workItem from="1526843036356" duration="2304000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126703000" />
+    <option name="totallyTimeSpent" value="137897000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -225,20 +228,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.059731543" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.102564104" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3855756" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.0" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.118791945" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" weight="0.3855756" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -248,12 +250,13 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.0" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11543624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -266,7 +269,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -284,14 +287,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PHPSnake/Board/Char.php" />
-    <entry file="file://$PROJECT_DIR$/PHPSnake/Snake.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2121">
-          <caret line="101" column="19" lean-forward="true" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -306,13 +301,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PHPSnake/Location.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPSnake/Location.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/SnakeGame.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/GameException.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/Board.php" />
@@ -373,13 +362,7 @@
     <entry file="file://$PROJECT_DIR$/PHPSnake/GameException.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/Board.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/Board/Char.php" />
-    <entry file="file://$PROJECT_DIR$/PHPSnake/Location.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPSnake/Location.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/Snake.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1407">
@@ -438,27 +421,8 @@
     <entry file="file://$PROJECT_DIR$/PHPSnake/Test/JsonTest.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/Test/TestClass.php" />
     <entry file="file://$PROJECT_DIR$/t.php" />
-    <entry file="file://$PROJECT_DIR$/game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="19" selection-start-line="19" selection-end-line="30" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHPSnake/Location.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php" />
+    <entry file="file://$PROJECT_DIR$/PHPSnake/Location.php" />
     <entry file="file://$PROJECT_DIR$/PHPSnake/Direction.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -468,8 +432,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PHPSnake/Snake.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="295" column="61" selection-start-line="295" selection-start-column="61" selection-end-line="295" selection-end-column="61" />
+        <state relative-caret-position="6348">
+          <caret line="370" column="5" selection-start-line="370" selection-start-column="5" selection-end-line="370" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPSnake/Game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPSnake/WorkWithServer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
         </state>
       </provider>
     </entry>
