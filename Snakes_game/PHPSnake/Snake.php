@@ -174,14 +174,23 @@ class Snake
     }
 
     private function snake_choose_dir(){
-        $x_snake = $this->head[0];
-        $y_snake = $this->head[1];
+
+        $x_snake = $this->head->getX();
+        $y_snake = $this->head->getY();
+
+        //TODO уточнить каким образом хранится инфа о сопернике
 
         //координаты последнего элемента тела
-        $enemy_x = $this->body_enemy[count($this->body_enemy)-1][0];
-        $enemy_y = $this->body_enemy[count($this->body_enemy)-1][1];
-
+        //TODO подумать, точно ли не врежется змея в тело, если целью будет не хвост
+        if (($this->head_enemy[0] == $this->tail_enemy[0] && abs($this->head_enemy[1] - $this->tail_enemy[1])== 1) || ($this->head_enemy[1] == $this->tail_enemy[1] && abs($this->head_enemy[0] - $this->tail_enemy[0])== 1)){
+            $enemy_x = $this->head_enemy[0];
+            $enemy_y = $this->head_enemy[1];
+        }else {
+            $enemy_x = $this->body_enemy[count($this->body_enemy) - 1][0];
+            $enemy_y = $this->body_enemy[count($this->body_enemy) - 1][1];
+        }
         // разность между координатами змей
+
         $x_dif = $x_snake-$enemy_x;
         $y_dif = $y_snake-$enemy_y;
 
@@ -196,7 +205,9 @@ class Snake
             $dir_2 = Direction::UP;
         }
 
+
         if(abs($x_dif) > abs($y_dif) && $this->testDirectionOfSnake($dir_1)){
+
             $this->direction = $dir_1;
         }elseif ($this->testDirectionOfSnake($dir_2)){
             $this->direction = $dir_2;
@@ -209,6 +220,7 @@ class Snake
 
 
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
+  
     private function eatEnemySnake(){
         if($this->head[0] == $this->tail_enemy[0] && $this->head[1] == $this->tail_enemy[1]){
             $this->rebuildSnakeIfItBite();
@@ -284,6 +296,7 @@ class Snake
             }
         }
     }
+
 
     private function rebuildSnakeIfItBited(){
         if (!$this->body){
