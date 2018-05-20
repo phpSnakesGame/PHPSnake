@@ -14,6 +14,7 @@ class Snake
 {
     private $id;
     private $head, $body, $tail;
+    private $head_enemy,$body_enemy, $tail_enemy;
     private $length = 5;
 
     private $head_enemy,$body_enemy, $tail_enemy;
@@ -24,9 +25,7 @@ class Snake
     private $steps_count = 50;
 
     private $score = 0;
-    private $direction = Direction::RIGHT;
-
-    /*TODO определиться, когда змея считается съеденной: когда тело = 0 или когда остается только голова*/
+    private $direction;
 
     //переменную is_alive меняем с false на true, когда съедена, врезалась в границы поля или в голову / тело
     // змеи - противника, обнулился счетчик, отвечающий за кол-во шагов
@@ -67,10 +66,6 @@ class Snake
         }
     }
 
-
-    /*TODO расположение змеи с k = 1: head[x,y], где {x: 4 -> 6; y: 0 -> 4}, тело и хвост располагаются слева от головы, направление дефолтное направо */
-    /*TODO расположение змеи с k = 2: head[x,y], где {x: 3 -> 5; y: 6 -> 9}, тело и хвост располагаются справа от головы, направление дефолтное влево*/
-
     public function generateLocationForFirstSnake(){
         $x = rand(4,6);
         $y = rand(0,4);
@@ -106,7 +101,6 @@ class Snake
         return $this->is_crashed;
     }
 
-
     private function testDirectionOfSnake($previous_direction, $direction)
     {
         if ($direction == Direction::UP){
@@ -135,47 +129,82 @@ class Snake
         return true;
     }
 
-    /*TODO брать координаты частей змеи и сдвигать*/
     private function move($direction){
-        /* х, у только для примера, надо взять старые значения голова, тела, хвоста*/
-        $x = 0;
-        $y = 0;
+
+        $x_head = $this->getHead()->getX();
+        $y_head = $this->getHead()->getY();
+
+        $array_body = $this->getBody();
+        $x_tail = $this->getTail()->getX();
+        $y_tail = $this->getTail()->getY();
 
         switch ($direction){
             case (Direction::LEFT):
-                $this->head = new Location( $x - 1,$y);
-                // сдвинуть все тело
-                $this->tail = new Location($x - 1, $y);
+                $this->head = new Location( $x_head - 1,$y_head);
+                for ($i = 0; $i < count($array_body); $i ++){
+                    $x_body = $array_body[$i]->getX();
+                    $y_body = $array_body[$i]->getY();
+                    $array_body[$i] = new Location($x_body - 1, $y_body);
+                }
+                $this->tail = new Location($x_tail - 1, $y_tail);
                 break;
             case (Direction::RIGHT):
-                $this->head = new Location($x + 1, $y);
-                $this->tail = new Location($x + 1, $y);
+                $this->head = new Location($x_head + 1, $y_head);
+                for ($i = 0; $i < count($array_body); $i ++){
+                    $x_body = $array_body[$i]->getX();
+                    $y_body = $array_body[$i]->getY();
+                    $array_body[$i] = new Location($x_body + 1, $y_body);
+                }
+                $this->tail = new Location($x_tail + 1, $y_tail);
                 break;
             case (Direction::UP):
-                $this->head = new Location($x, $y - 1);
-                $this->tail = new Location($x, $y - 1);
+                $this->head = new Location($x_head, $y_head - 1);
+                for ($i = 0; $i < count($array_body); $i ++){
+                    $x_body = $array_body[$i]->getX();
+                    $y_body = $array_body[$i]->getY();
+                    $array_body[$i] = new Location($x_body, $y_body - 1);
+                }
+                $this->tail = new Location($x_tail, $y_tail - 1);
                 break;
             case (Direction::DOWN):
-                $this->head = new Location($x, $y + 1);
-                $this->tail = new Location($x, $y + 1);
+                $this->head = new Location($x_head, $y_head + 1);
+                for ($i = 0; $i < count($array_body); $i ++){
+                    $x_body = $array_body[$i]->getX();
+                    $y_body = $array_body[$i]->getY();
+                    $array_body[$i] = new Location($x_body, $y_body + 1);
+                }
+                $this->tail = new Location($x_tail, $y_tail + 1);
                 break;
         }
     }
 
-    /*TODO реализовать алгоритм для движения змеи */
+    //TODO потестить
+    //TODO проверять testDirection
     private function snake_choose_dir(){
         $x_snake = $this->head->getX();
         $y_snake = $this->head->getY();
+<<<<<<< HEAD
 
         //TODO уточнить каким образом хранится инфа о сопернике
         $enemy_x = $this->body_enemy[count(body_enemy)-1][0];
         $enemy_y = $this->body_enemy[count(body_enemy)-1][1];
 
+=======
+        //TODO уточнить каким образом хранится инфа о сопернике
+
+        //координаты последнего элемента тела
+        //TODO проверять, если есть тело, брать эти значения, если нет - головы. подумать, точно ли не врежется змея в тело, если целью будет не хвост
+        $enemy_x = $this->body_enemy[count($this->body_enemy)-1][0];
+        $enemy_y = $this->body_enemy[count($this->body_enemy)-1][1];
+
+        // разность между координатами змей
+>>>>>>> 12ee0325027260feb6a03e58fe9668627833ada8
         $x_dif = $x_snake-$enemy_x;
         $y_dif = $y_snake-$enemy_y;
 
         $dir_1 = Direction::LEFT;
         $dir_2 = Direction::DOWN;
+<<<<<<< HEAD
 
 
         if ($x_snake < $enemy_x){
@@ -184,19 +213,43 @@ class Snake
         if ($y_snake > $enemy_y){
             $dir_2 = Direction::UP;
         }
+=======
+
+        if ($x_snake < $enemy_x){
+            $dir_1 = Direction::RIGHT;
+        }
+
+        if ($y_snake > $enemy_y){
+            $dir_2 = Direction::UP;
+        }
+        
+        //TODO делать: this->direction или this->setDirection
+>>>>>>> 12ee0325027260feb6a03e58fe9668627833ada8
         if(abs($x_dif) > abs($y_dif)){
             $this->direction = $dir_1;
         }else{
             $this->direction = $dir_2;
         }
+        return $this->direction;
     }
+
 
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
     private function eatSnake(){
         if($this->head->getX() == $this->tail_enemy[0] && $this->head->getY() == $this->tail_enemy[1]){
+<<<<<<< HEAD
+=======
+            // вызываем метод достроения тела и хвоста
+        }
+    }
+
+    private function rebuildSnakeIfIsBited(){
+>>>>>>> 12ee0325027260feb6a03e58fe9668627833ada8
 
         }
     }
+
+    private function rebuildSnakeIfIs
 
     /**
      * @return Location
@@ -207,7 +260,7 @@ class Snake
     }
 
     /**
-     * @return Location
+     * @return array
      */
     public function getBody()
     {
@@ -231,7 +284,7 @@ class Snake
     }
 
     /**
-     * @param Location $body
+     * @param array $body
      */
     public function setBody($body): void
     {
@@ -250,7 +303,5 @@ class Snake
     {
         return $this->id;
     }
-
-
 }
 
