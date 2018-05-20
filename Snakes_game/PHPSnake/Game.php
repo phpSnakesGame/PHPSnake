@@ -14,9 +14,6 @@ class Game
     private $snake_id;
     private $battle_id;
 
-    //функция получения json-a
-
-
      /**
      * @return int
      */
