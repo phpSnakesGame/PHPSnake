@@ -17,7 +17,6 @@ class Snake
     private $head_enemy,$body_enemy, $tail_enemy;
     private $length = 5;
 
-    private $head_enemy,$body_enemy, $tail_enemy;
     private $is_alive = true; // для каждой змеи, в общем классе проверять, если одна из змей умерла, game over
 
     private $is_bited = false;
@@ -183,13 +182,7 @@ class Snake
     private function snake_choose_dir(){
         $x_snake = $this->head->getX();
         $y_snake = $this->head->getY();
-<<<<<<< HEAD
 
-        //TODO уточнить каким образом хранится инфа о сопернике
-        $enemy_x = $this->body_enemy[count(body_enemy)-1][0];
-        $enemy_y = $this->body_enemy[count(body_enemy)-1][1];
-
-=======
         //TODO уточнить каким образом хранится инфа о сопернике
 
         //координаты последнего элемента тела
@@ -198,22 +191,12 @@ class Snake
         $enemy_y = $this->body_enemy[count($this->body_enemy)-1][1];
 
         // разность между координатами змей
->>>>>>> 12ee0325027260feb6a03e58fe9668627833ada8
+
         $x_dif = $x_snake-$enemy_x;
         $y_dif = $y_snake-$enemy_y;
 
         $dir_1 = Direction::LEFT;
         $dir_2 = Direction::DOWN;
-<<<<<<< HEAD
-
-
-        if ($x_snake < $enemy_x){
-            $dir_1 = Direction::RIGHT;
-        }
-        if ($y_snake > $enemy_y){
-            $dir_2 = Direction::UP;
-        }
-=======
 
         if ($x_snake < $enemy_x){
             $dir_1 = Direction::RIGHT;
@@ -224,7 +207,7 @@ class Snake
         }
         
         //TODO делать: this->direction или this->setDirection
->>>>>>> 12ee0325027260feb6a03e58fe9668627833ada8
+      
         if(abs($x_dif) > abs($y_dif)){
             $this->direction = $dir_1;
         }else{
@@ -237,19 +220,14 @@ class Snake
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
     private function eatSnake(){
         if($this->head->getX() == $this->tail_enemy[0] && $this->head->getY() == $this->tail_enemy[1]){
-<<<<<<< HEAD
-=======
-            // вызываем метод достроения тела и хвоста
-        }
-    }
 
-    private function rebuildSnakeIfIsBited(){
->>>>>>> 12ee0325027260feb6a03e58fe9668627833ada8
 
         }
     }
 
-    private function rebuildSnakeIfIs
+    private function rebuildSnakeIfIs(){
+
+    }
 
     /**
      * @return Location
