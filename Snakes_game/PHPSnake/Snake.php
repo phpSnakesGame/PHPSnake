@@ -17,6 +17,7 @@ class Snake
     private $head_enemy,$body_enemy, $tail_enemy;
     private $length = 5;
 
+    private $head_enemy,$body_enemy, $tail_enemy;
     private $is_alive = true; // для каждой змеи, в общем классе проверять, если одна из змей умерла, game over
 
     private $is_bited = false;
@@ -182,6 +183,7 @@ class Snake
     private function snake_choose_dir(){
         $x_snake = $this->head->getX();
         $y_snake = $this->head->getY();
+
         //TODO уточнить каким образом хранится инфа о сопернике
 
         //координаты последнего элемента тела
@@ -190,6 +192,7 @@ class Snake
         $enemy_y = $this->body_enemy[count($this->body_enemy)-1][1];
 
         // разность между координатами змей
+
         $x_dif = $x_snake-$enemy_x;
         $y_dif = $y_snake-$enemy_y;
 
@@ -205,6 +208,7 @@ class Snake
         }
         
         //TODO делать: this->direction или this->setDirection
+      
         if(abs($x_dif) > abs($y_dif)){
             $this->direction = $dir_1;
         }else{
@@ -217,12 +221,9 @@ class Snake
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
     private function eatSnake(){
         if($this->head->getX() == $this->tail_enemy[0] && $this->head->getY() == $this->tail_enemy[1]){
-            // вызываем метод достроения тела и хвоста
+
+
         }
-    }
-
-    private function rebuildSnakeIfIsBited(){
-
     }
 
     private function rebuildSnakeIfIs
