@@ -2,36 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: Regina
- * Date: 20.05.2018
- * Time: 22:58
+ * Date: 21.05.2018
+ * Time: 4:57
  */
 
 namespace PHPSnake;
-use PHPSnake\RequestAnswer;
 
-class RequestWithId
+class RequestAnswer
 {
-    /**
-     * RequestWithId constructor.
-     * @param int $getSnakeId
-     * @param int $getBattleId
-     */
-
-
     private $curl;
-    private $info;
 
     private $snake_id;
     private $battle_id;
 
-    private $result;
 
-    public function __construct($snake_id, $battle_id )
-    {
-        $this->snake_id = $snake_id;
-        $this->battle_id = $battle_id;
-        return $this->result;
-    }
 
 
     public function requestServer($params){
@@ -48,30 +32,42 @@ class RequestWithId
             CURLOPT_POSTFIELDS => $params
         ));
 
-        $this->result = curl_exec($this->curl);
-        $this->info = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
+        $result = curl_exec($this->curl);
         curl_close($this->curl);
-        return $this->result;
+
+        return $result;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getSnakeId()
+    {
+        return $this->snake_id;
     }
 
     /**
-     * @return mixed
+     * @param int $snake_id
      */
-    public function getInfo()
+    public function setSnakeId($snake_id): void
     {
-        return $this->info;
+        $this->snake_id = $snake_id;
     }
 
     /**
-     * @param mixed $info
+     * @return int
      */
-    public function setInfo($info): void
+    public function getBattleId()
     {
-        $this->info = $info;
+        return $this->battle_id;
     }
 
-
-
-
-
+    /**
+     * @param int $battle_id
+     */
+    public function setBattleId($battle_id): void
+    {
+        $this->battle_id = $battle_id;
+    }
 }

@@ -7,20 +7,15 @@
  */
 
 namespace PHPSnake;
+use PHPSnake\Game;
 
 class Snake
 {
     private $id;
     private $head, $body, $tail;
-    private $head_enemy,$body_enemy, $tail_enemy;
 
     private $is_bited = false;
     private $is_bite = false;
-    private $steps_count = 50;
-
-    private $json_string;
-
-
 
    /* //переменную is_alive меняем с false на true, когда съедена, врезалась в границы поля или в голову / тело
     // змеи - противника, обнулился счетчик, отвечающий за кол-во шагов
@@ -37,49 +32,20 @@ class Snake
     //при создании змеи, задаем ей "собственнный идентификатор": 1 или 2
     // если k = 1, генерируем ее первоначальное появление в поле (x: 0 -> 6; y: 0 -> 4)
     // если k = 2, генерируем первоначальное появление в поле (х: 4 -> 10; y: 6 -> 10)
-    public function __construct($id, $k){
+    public function __construct($id, $head, $body, $tail){
         $this->id = $id;
 
-        if ($k == 1){
-            $this->head = $this->generateLocationForFirstSnake();
-            $x = $this->head[0];
-            $y = $this->head[1];
-            /*TODO подумать насчет того, чтобы переделать сделать создание тела в цикле*/
-            $this->body = [[$x - 1, $y], [$x - 2, $y], [$x - 3, $y]];
-            $this->tail = [$x - 4, $y];
+        $this->head = $head;
+        $this->body = $body;
+        $this->tail = $tail;
+       /* $x = $this->head[0];
+        $y = $this->head[1];
 
-            $this->direction = Direction::RIGHT;
-        }
-        elseif ($k == 2){
-            $this->head = $this->generateLocationForSecondSnake();
-            $x = $this->head[0];
-            $y = $this->head[1];
+        $this->body = [[$x - 1, $y], [$x - 2, $y], [$x - 3, $y]];
+        $this->tail = [$x - 4, $y];
 
-            $this->body = [[$x + 1, $y], [$x + 2, $y], [$x + 3, $y]];
-            $this->tail = [$x + 4, $y];
-            $this->direction = Direction::LEFT;
-        }
-    }
+        $this->direction = Direction::RIGHT;*/
 
-    public function generateLocationForFirstSnake(){
-        $x = rand(4,6);
-        $y = rand(0,4);
-        $location = [$x, $y];
-        return $location;
-    }
-
-    public function generateLocationForSecondSnake(){
-        $x = rand(3,5);
-        $y = rand(6,9);
-        $location = [$x, $y];
-        return $location;
-    }
-
-    public function makeJson(){
-        $json = array("id"=>$this->getId(), "head"=>$this->getHead(), "body"=>$this->getBody(), "tail"=>$this->getTail(),
-            "is_bited"=>$this->is_bited);
-        $this->json_string = json_encode($json);
-        return $this->json_string;
     }
 
     // проверка границ поля
@@ -92,7 +58,7 @@ class Snake
         return false;
     }
 
-    private function testDirectionOfSnake($direction)
+    public function testDirectionOfSnake($direction)
     {
         $previous_direction = $this->direction;
 
@@ -122,7 +88,7 @@ class Snake
         return true;
     }
 
-    private function move($direction){
+    public function move($direction){
 
         $x_head = $this->getHead()[0];
         $y_head = $this->getHead()[1];
@@ -150,7 +116,7 @@ class Snake
                 }
                 $this->tail = [$x_tail + 1, $y_tail];
                 break;
-            case (Direction::UP):
+            case (Direction::DOWN):
                 $this->head = [$x_head, $y_head - 1];
                 for ($i = 0; $i < count($array_body); $i ++){
                     $x_body = ($array_body[$i])[0];
@@ -159,7 +125,7 @@ class Snake
                 }
                 $this->tail = [$x_tail, $y_tail - 1];
                 break;
-            case (Direction::DOWN):
+            case (Direction::UP):
                 $this->head = [$x_head, $y_head + 1];
                 for ($i = 0; $i < count($array_body); $i ++){
                     $x_body = ($array_body[$i])[0];
@@ -169,25 +135,21 @@ class Snake
                 $this->tail = [$x_tail, $y_tail + 1];
                 break;
         }
-
-        $this->steps_count --;
     }
 
-    private function snake_choose_dir(){
+    public function snake_choose_dir($tail_enemy, $head_enemy, $body_enemy){
 
-        $x_snake = $this->head->getX();
-        $y_snake = $this->head->getY();
+        $x_snake = $this->head[0];
+        $y_snake = $this->head[1];
 
-        //TODO уточнить каким образом хранится инфа о сопернике
 
         //координаты последнего элемента тела
-        //TODO подумать, точно ли не врежется змея в тело, если целью будет не хвост
-        if (($this->head_enemy[0] == $this->tail_enemy[0] && abs($this->head_enemy[1] - $this->tail_enemy[1])== 1) || ($this->head_enemy[1] == $this->tail_enemy[1] && abs($this->head_enemy[0] - $this->tail_enemy[0])== 1)){
-            $enemy_x = $this->head_enemy[0];
-            $enemy_y = $this->head_enemy[1];
+        if (($head_enemy[0] == $tail_enemy[0] && abs($head_enemy[1] - $tail_enemy[1])== 1) || ($head_enemy[1] == $tail_enemy[1] && abs($head_enemy[0] - $tail_enemy[0])== 1)){
+            $enemy_x = $head_enemy[0];
+            $enemy_y = $head_enemy[1];
         }else {
-            $enemy_x = $this->body_enemy[count($this->body_enemy) - 1][0];
-            $enemy_y = $this->body_enemy[count($this->body_enemy) - 1][1];
+            $enemy_x = $body_enemy[count($body_enemy) - 1][0];
+            $enemy_y = $body_enemy[count($body_enemy) - 1][1];
         }
         // разность между координатами змей
 
@@ -195,14 +157,14 @@ class Snake
         $y_dif = $y_snake-$enemy_y;
 
         $dir_1 = Direction::LEFT;
-        $dir_2 = Direction::DOWN;
+        $dir_2 = Direction::UP;
 
         if ($x_snake < $enemy_x){
             $dir_1 = Direction::RIGHT;
         }
 
         if ($y_snake > $enemy_y){
-            $dir_2 = Direction::UP;
+            $dir_2 = Direction::DOWN;
         }
 
 
@@ -221,19 +183,23 @@ class Snake
 
     //если координаты головы одной змеи равны координатам хвоста другой змеи, то откусываем
   
-    private function eatEnemySnake(){
-        if($this->head[0] == $this->tail_enemy[0] && $this->head[1] == $this->tail_enemy[1]){
+    public function enemySnakeIsBited($tail_enemy){
+        if($this->head[0] == $tail_enemy[0] && $this->head[1] == $tail_enemy[1]){
             $this->rebuildSnakeIfItBite();
+            return $this->is_bite = true;
         }
+        return false;
     }
 
-    private function eatOurSnake(){
-        if ($this->head_enemy[0] == $this->tail[0] && $this->head_enemy[1] == $this->tail[1]){
+    public function ourSnakeIsBited($head_enemy){
+        if ($head_enemy[0] == $this->tail[0] && $head_enemy[1] == $this->tail[1]){
             $this->rebuildSnakeIfItBited();
+            return $this->is_bited = true;
         }
+        return false;
     }
 
-    private function rebuildSnakeIfItBite(){
+    public function rebuildSnakeIfItBite(){
         $body = $this->getBody();
         if (!$body){
             $last_element = $this->getHead();
@@ -298,7 +264,7 @@ class Snake
     }
 
 
-    private function rebuildSnakeIfItBited(){
+    public function rebuildSnakeIfItBited(){
         if (!$this->body){
             array_pop($this->tail);
         }
@@ -363,14 +329,6 @@ class Snake
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getJsonString()
-    {
-        return $this->json_string;
     }
 
     private $direction;

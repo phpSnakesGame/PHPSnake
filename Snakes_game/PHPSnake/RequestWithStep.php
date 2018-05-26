@@ -19,87 +19,59 @@ class RequestWithStep
      * @param string $step
      */
 
-    private $snakeID;
-    private $battleId;
+    private $curl;
+    private $info;
+
+    private $snake_id;
     private $step;
+    private $battle_id;
 
-    public function __construct($snakeId, $battleId, $step)
+    private $result;
+
+    public function __construct($snake_id, $battle_id, $step)
     {
-        $this->battleId = $battleId;
-        $this->snakeID = $snakeId;
+        $this->snake_id = $snake_id;
+        $this->battle_id = $battle_id;
         $this->step = $step;
+
+        return $this->result;
     }
 
 
-    public function createJsonWithStep(){
-        $json = array("snake_id" => $this->getSnakeID(), "battle_id" => $this->getBattleId(), "step" => $this->getStep());
-        $json_string = json_encode($json);
-        return $json_string;
-    }
-
-    public function requestServerWithStep(){
-        $ch = curl_init('http://localhost:****/');
-        while (true){
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $this->createJsonWithStep());
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                    'Content-Length: ' . strlen($this->createJsonWithStep()))
-            );
-            $result = curl_exec($ch);
-        }
-        curl_close($ch);
-        return $result;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSnakeID()
-    {
-        return $this->snakeID;
-    }
-
-    /**
-     * @param mixed $snakeID
-     */
-    public function setSnakeID($snakeID): void
-    {
-        $this->snakeID = $snakeID;
+    public function requestServerWithStep($params){
+        $url = 'http://80.211.132.97:8888/snake';
+        $this->curl = curl_init();
+        curl_setopt_array($this->curl, array(
+            CURLOPT_USERAGENT =>
+                'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json'),
+            CURLOPT_URL => $url,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $params
+        ));
+        $this->result = curl_exec($this->curl);
+        $this->info = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
+        curl_close($this->curl);
     }
 
     /**
      * @return mixed
      */
-    public function getBattleId()
+    public function getInfo()
     {
-        return $this->battleId;
+        return $this->info;
     }
 
     /**
-     * @param mixed $battleId
+     * @param mixed $info
      */
-    public function setBattleId($battleId): void
+    public function setInfo($info): void
     {
-        $this->battleId = $battleId;
+        $this->info = $info;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStep()
-    {
-        return $this->step;
-    }
-
-    /**
-     * @param mixed $step
-     */
-    public function setStep($step): void
-    {
-        $this->step = $step;
-    }
 
 
 }
