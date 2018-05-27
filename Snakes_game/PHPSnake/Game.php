@@ -21,10 +21,27 @@ class Game
 
     private $enemy_is_bited, $is_bited;
 
+    private $snake;
 
     public function initSnake(){
-        return new Snake($this->snake_id, $this->head, $this->body, $this->tail);
-     /*   return $snake;*/
+        $this->snake = new Snake($this->snake_id, $this->head, $this->body, $this->tail);
+        return $this->snake;
+    }
+
+    /**
+     * @return Snake
+     */
+    public function getSnake()
+    {
+        return $this->snake;
+    }
+
+    /**
+     * @param Snake $snake
+     */
+    public function setSnake($snake): void
+    {
+        $this->snake = $snake;
     }
 
 
@@ -34,9 +51,12 @@ class Game
         if ($snake->enemySnakeIsBited($this->enemy_tail)){
             $snake->rebuildSnakeIfItBite();
         }
-                if ($snake->ourSnakeIsBited($this->enemy_head)){
-                    $snake->rebuildSnakeIfItBited();
+        if ($snake->ourSnakeIsBited($this->enemy_head)){
+            $snake->rebuildSnakeIfItBited();
         }
+        $this->tail = $snake->getTail();
+        $this->body = $snake->getBody();
+        $this->head = $snake->getHead();
     }
 
 
@@ -215,6 +235,7 @@ class Game
     {
         $this->is_bited = $is_bited;
     }
+
 
 
 }

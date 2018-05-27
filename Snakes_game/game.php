@@ -8,7 +8,6 @@
 
 namespace PHPSnake;
 
-use PHPSnake\ClassForGetParams;
 
     spl_autoload_register(function ($class_name) {
         include "$class_name.php";
@@ -21,21 +20,28 @@ use PHPSnake\ClassForGetParams;
 
     $ok = true;
     while ($ok) {
-        $response_array = json_decode(ClassForGetParams::getRequestParamsForGettingGameData($game)["params"]);
-        print_r($response_array);
-        while ($response_array['info'] == 202) {
-            $response_array = json_decode(ClassForGetParams::getRequestParamsForGettingGameData($game)["params"]);
+        $response_array = ClassForGetParams::getRequestParamsForGettingGameData($game)["params"];
+
+        while (ClassForGetParams::getRequestParamsForGettingGameData($game)["info"] == 202) {
+            $response_array = ClassForGetParams::getRequestParamsForGettingGameData($game)["params"];
         }
         print_r($response_array);
-        $game->setEnemyHead($response_array->snakes->enemy->head);
-        $game->setEnemyBody($response_array->snakes->enemy->body);
-        $game->setEnemyTail($response_array->snakes->enemy->tail);
-        $game->setEnemyIsBited($response_array->snakes->enemy->is_bited);
 
-        $game->setBody($response_array->snakes->ally->body);
-        $game->setHead($response_array->snakes->ally->head);
-        $game->setTail($response_array->snakes->ally->tail);
-        $game->setIsBited($response_array->snakes->ally->is_bited);
+        if (isset($response_array->you)){
+            break;
+        }
+
+        if (isset($response_array->snakes->enemy->head)) {
+            $game->setEnemyHead($response_array->snakes->enemy->head);
+            $game->setEnemyBody($response_array->snakes->enemy->body);
+            $game->setEnemyTail($response_array->snakes->enemy->tail);
+            $game->setEnemyIsBited($response_array->snakes->enemy->is_bited);
+
+            $game->setBody($response_array->snakes->ally->body);
+            $game->setHead($response_array->snakes->ally->head);
+            $game->setTail($response_array->snakes->ally->tail);
+            $game->setIsBited($response_array->snakes->ally->is_bited);
+        }
 
         $snake = $game->initSnake();
         $game->moveSnake($snake);
@@ -44,6 +50,7 @@ use PHPSnake\ClassForGetParams;
 
         $second_response_array = ClassForGetParams::getRequestParamsWithStep($game);
         print_r($second_response_array);
+
         if ($second_response_array['info'] == 200) {
             $ok = true;
         }
