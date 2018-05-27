@@ -16,8 +16,6 @@ class RequestAnswer
     private $battle_id;
 
 
-
-
     public function requestServer($params){
         $url = 'http://80.211.132.97:8888/snake';
         $this->curl = curl_init();

@@ -16,18 +16,16 @@ class ClassForGetParams
         $requestByAnswer = new RequestAnswer();
         $params = json_encode(array("answer" => 42));
         $result_json = json_decode($requestByAnswer->requestServer($params));
-        $game->setBattleId($result_json['battle_id']);
-        $game->setSnakeId($result_json['snake_id']);
+        $game->setBattleId($result_json->battle_id);
+        $game->setSnakeId($result_json->snake_id);
     }
-
 
     public static function getRequestParamsForGettingGameData(Game $game)
     {
-        $req = new RequestWithId($game->getSnakeId(), $game->getBattleId());
+        $request = new RequestWithId($game->getSnakeId(), $game->getBattleId());
         $params = json_encode(['snake_id' => $game->getSnakeId(), 'battle_id' => $game->getBattleId()]);
-        $req -> requestServer($params);
-        $result_params = json_decode($req);
-        $info = $req -> getInfo();
+        $result_params = json_decode($request -> requestServer($params));
+        $info = $request -> getInfo();
         return array("params" => $result_params, "info" => $info);
     }
 
@@ -35,8 +33,7 @@ class ClassForGetParams
     {
         $req = new RequestWithStep($game->getSnakeId(), $game->getBattleId(), $game->getStep());
         $params = json_encode(['snake_id' => $game->getSnakeId(), 'battle_id' => $game->getBattleId(), 'step'=>$game->getStep()]);
-        $req -> requestServerWithStep($params);
-        $result_params = json_decode($req);
+        $result_params = json_decode($req -> requestServerWithStep($params));
         $info = $req -> getInfo();
         return array("params" => $result_params, "info" => $info);
     }

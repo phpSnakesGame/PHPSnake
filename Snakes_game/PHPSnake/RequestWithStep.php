@@ -26,15 +26,11 @@ class RequestWithStep
     private $step;
     private $battle_id;
 
-    private $result;
-
     public function __construct($snake_id, $battle_id, $step)
     {
         $this->snake_id = $snake_id;
         $this->battle_id = $battle_id;
         $this->step = $step;
-
-        return $this->result;
     }
 
 
@@ -51,9 +47,10 @@ class RequestWithStep
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $params
         ));
-        $this->result = curl_exec($this->curl);
+        $result = curl_exec($this->curl);
         $this->info = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
         curl_close($this->curl);
+        return $result;
     }
 
     /**
