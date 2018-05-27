@@ -23,16 +23,20 @@ class Game
 
 
     public function initSnake(){
-        $snake = new Snake($this->snake_id, $this->head, $this->body, $this->tail);
+        return new Snake($this->snake_id, $this->head, $this->body, $this->tail);
+     /*   return $snake;*/
+    }
+
+
+    public function moveSnake(Snake $snake){
         $this->step = $snake->snake_choose_dir($this->enemy_tail, $this->enemy_head, $this->enemy_body);
         $snake->move($this->step);
         if ($snake->enemySnakeIsBited($this->enemy_tail)){
             $snake->rebuildSnakeIfItBite();
         }
-        if ($snake->ourSnakeIsBited($this->enemy_head)){
-            $snake->rebuildSnakeIfItBited();
+                if ($snake->ourSnakeIsBited($this->enemy_head)){
+                    $snake->rebuildSnakeIfItBited();
         }
-     /*   return $snake;*/
     }
 
 
